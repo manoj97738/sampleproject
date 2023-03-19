@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-router.get('/user', (req, res) => {
+const middelware = require("../middleware/vailidation.middleware")
+router.get('/user', middelware.middleware1, middelware.middleware2, (req, res) => {
     console.log("req", req.query);
     res.send('Hello World!')
 })

@@ -1,2 +1,41 @@
-<h1 style="font-size: 2rem;">some world</h1>
-{{ title}} and name is {{name}}
+<h1 style="font-size: 2rem;">
+  {{ title}} radmore -- Interpolation
+</h1>
+and name is
+<p *ngIf="age>17;else mytemplate">
+  if ielse{{name}}
+</p>
+
+<ng-template #mytemplate>
+  else template
+</ng-template>
+
+
+
+<ng-template [ngIf]="isMango">
+  <div class="name"> {{name}}</div>
+</ng-template>
+<table border="1">
+  <tr>
+    <td> No. </td>
+    <td> Name</td>
+    <td> Age</td>
+  </tr>
+  <tr *ngFor="let mydata of heroes; let i=index;">
+    <td> {{i+1}} </td>
+    <td> {{mydata.name}}</td>
+    <td> {{mydata.age}}</td>
+  </tr>
+</table>
+<ng-template ngFor let-mydata [ngForOf]="heroes" let-i="index">
+  <div>
+    ({{i}}) {{mydata.name}}
+  </div>
+</ng-template>
+
+<div [ngSwitch]="age">
+  <span *ngSwitchCase="18">You are Young</span>
+  <span *ngSwitchCase="17">You are Bacchu</span>
+</div>
+<button (click)="add()">My click</button>
+DRY ( dont repeat ypurself)

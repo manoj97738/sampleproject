@@ -14,10 +14,32 @@ export class FirstComponent {
     { name: "manoj", age: 20 },
     { name: "rahul", age: 70 }
   ];
+  currentClasses: Record<string, boolean> = {};
+  currentStyles: Record<string, string> = {};
 
+  constructor() {
+    this.setCurrentClasses();
+  }
+  setCurrentClasses() {
+    // CSS classes: added/removed per current state of component properties
+    this.currentClasses = {
+      saveable: this.age > 17,
+      nospecial: this.age == 17,
+      special: this.age === 18,
+    };
+    this.currentStyles = {
+      'font-style': this.age > 17 ? 'italic' : 'normal',
+      'font-weight': this.age == 17 ? 'bold' : 'normal',
+      'font-size': this.age === 18 ? '24px' : '12px'
+    };
+  }
   age = 18;
   add() {
     this.isMango = !this.isMango
     this.age = this.age - 1;
+    this.setCurrentClasses();
   }
+  mydate = new Date();
+
+  myname = "My NAMe is SomThInug";
 }

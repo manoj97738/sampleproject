@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyhllowComponent } from './myhllow.component';
+import { MyhelloComponent } from './myhllow.component';
 
-describe('MyhllowComponent', () => {
-  let component: MyhllowComponent;
-  let fixture: ComponentFixture<MyhllowComponent>;
+describe('MyhelloComponent', () => {
+  let component: MyhelloComponent;
+  let fixture: ComponentFixture<MyhelloComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyhllowComponent ]
+      declarations: [ MyhelloComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyhllowComponent);
+    fixture = TestBed.createComponent(MyhelloComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

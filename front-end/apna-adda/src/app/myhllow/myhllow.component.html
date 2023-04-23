@@ -1,1 +1,9 @@
 <p>myhllow works!</p>
+<form [formGroup]="signinForm">
+  <input type="text" formControlName="email">
+  <input type="text" formControlName="password">
+  <button type="button" (click)="mysubmit()">Submit</button>
+</form>
+
+<input type="text" [formControl]="something">
+<input type="text" [(ngModel)]="ngmd">

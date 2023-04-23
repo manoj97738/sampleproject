@@ -14,7 +14,15 @@ export class FirstComponent {
     { name: "manoj", age: 20 },
     { name: "rahul", age: 70 }
   ];
-  currentClasses: Record<string, boolean> = {};
+  currentClasses: {
+    saveable: boolean;
+    nospecial: boolean;
+    special: boolean;
+  } = {
+      saveable: false,
+      nospecial: false,
+      special: false,
+    };
   currentStyles: Record<string, string> = {};
 
   constructor() {

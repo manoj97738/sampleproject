@@ -17,10 +17,31 @@ app.use(middelware.middleware2);
 const routePublic = require("./routes/route.public");
 
 app.get('/filedownlaod', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'angularsyllabus.pdf')) 
+    res.sendFile(path.join(__dirname, 'public', 'angularsyllabus.pdf'))
 })
 app.use("/v1", routePublic);
 app.all('**', (req, res) => {
     res.send('No route found')
 })
 initApp(app);
+
+const modelaggreement = require("./model/agreement.model")
+const { Sequelize } = require('sequelize');
+const sequelize = new Sequelize('apnaadda', 'root', '', {
+    host: '127.0.0.1',
+    dialect: 'mysql'
+});
+(async () => {
+    try {
+        await sequelize.authenticate();
+        const aggrement = modelaggreement(sequelize);
+        await sequelize.sync();
+        const jane = await aggrement.create({ firstName: "Jane", lastName: "Doe" });
+        console.log("jane", jane.toJSON())
+        const janexy = await aggrement.findAll({});
+        console.log("janexy", janexy)
+        console.log('Connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+})()

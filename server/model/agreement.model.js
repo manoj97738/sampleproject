@@ -12,11 +12,8 @@ function Model(sequelize) {
         lastName: {
             type: DataTypes.STRING,
             default: "test",
-
         }
-    }, {
-        // Other model options go here
-    });
+    }, {});
 
     return User
 }

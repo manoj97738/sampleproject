@@ -1,9 +1,27 @@
 <p>myhllow works!</p>
 <form [formGroup]="signinForm">
-  <input type="text" formControlName="email" [ngClass]="iamValid('email') !='' ? 'red':''"><br/>
+  <input type="text" formControlName="email" [ngClass]="iamValid('email') !='' ? 'red':''"><br />
   <h1 [ngClass]="iamValid('email') !='' ? 'red':''">{{iamValid("email")}}</h1>
-  <input type="text" formControlName="password" [ngClass]="iamValid('password') !='' ? 'red':''"><br/>
-  <h1 [ngClass]="iamValid('password') !='' ? 'red':''">{{iamValid("password")}}</h1><br/>
+  <input type="text" formControlName="password" [ngClass]="iamValid('password') !='' ? 'red':''"><br />
+  <h1 [ngClass]="iamValid('password') !='' ? 'red':''">{{iamValid("password")}}</h1><br />
+  <ng-container formArrayName="phone">
+    <ng-container *ngFor="let phone of phones.controls; let i = index">
+      <input type="text" [formControlName]="i"><br />
+
+    </ng-container>
+  </ng-container>
+  <ng-container formArrayName="address">
+    <ng-container *ngFor="let add of address.controls; let i = index">
+      <div  [formGroup]="add">
+        <input type="text" formControlName="line1"><br />
+        <input type="text" formControlName="line2"><br />
+        <input type="text" formControlName="pincode"><br />
+      </div>
+
+
+    </ng-container>
+  </ng-container>
+  <button type="button" (click)="addLesson()">addLesson</button>
   <button type="button" (click)="mysubmit()">Submit</button>
 </form>
 

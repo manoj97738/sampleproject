@@ -40,7 +40,7 @@ export class MyhelloComponent implements OnInit {
     const fg = this.fb.group({
       line1: new FormControl("", [Validators.required,]),
       line2: new FormControl("", [Validators.required,]),
-      linepincode: new FormControl("", [Validators.required,]),
+      pincode: new FormControl("", [Validators.required,]),
     })
     this.address.push(fg);
   }

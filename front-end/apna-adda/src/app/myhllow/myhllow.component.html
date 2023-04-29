@@ -12,16 +12,16 @@
   </ng-container>
   <ng-container formArrayName="address">
     <ng-container *ngFor="let add of address.controls; let i = index">
-      <div  [formGroup]="add">
+      <div [formGroupName]="i">
         <input type="text" formControlName="line1"><br />
         <input type="text" formControlName="line2"><br />
         <input type="text" formControlName="pincode"><br />
       </div>
-
-
     </ng-container>
   </ng-container>
   <button type="button" (click)="addLesson()">addLesson</button>
+  <button type="button" (click)="addaddress()">address</button>
+
   <button type="button" (click)="mysubmit()">Submit</button>
 </form>
 

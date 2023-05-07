@@ -28,7 +28,8 @@ export class MyhelloComponent implements OnInit {
     return this.signinForm.controls["phone"] as FormArray;
   }
   addLesson() {
-    this.phones.push(new FormControl("", [Validators.required,]));
+    const arr  = this.signinForm.controls["phone"] as FormArray;
+    arr.push(new FormControl("", [Validators.required,]));
   }
   deleteLesson(lessonIndex: number) {
     this.phones.removeAt(lessonIndex);

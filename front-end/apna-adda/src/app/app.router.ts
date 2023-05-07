@@ -9,7 +9,11 @@ import { CommonModule } from "@angular/common";
 const myRoutes: Routes = [
   { path: "", component: FirstComponent, },
   { path: "hello", component: HelloComponent, },
-  { path: "myhello", component: MyhelloComponent, }
+  { path: "myhello", component: MyhelloComponent, },
+  {
+    path: "lazy",
+    loadChildren: () =>  import('./lazyload/lazyload.module').then((m) => m.LazyModule),
+  }
 
 ];
 

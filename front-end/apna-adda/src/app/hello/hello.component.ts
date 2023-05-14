@@ -7,4 +7,7 @@ import { Component,Input } from "@angular/core";
 })
 export class HelloComponent {
   @Input() title: any = "";
+  alertHi(){
+    alert("can deactive")
+  }
 }

@@ -10,11 +10,9 @@ const myRoutes: Routes = [
   { path: "", component: lazyComponent, },
   {
     path: "second", component: SecondlazyComponent, children: [
-      {path:'childone', component:ThirdlazyComponent}
+      { path: 'childone', component: ThirdlazyComponent }
     ]
   },
-
-
 ];
 
 @NgModule({

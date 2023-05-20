@@ -4,16 +4,10 @@ import { user } from "./user.model";
 @Injectable({ providedIn: "root" })
 export class HttpService {
   constructor(public http: HttpClient) {
-
-
-
   }
 
   getTodos() {
-    this.http.get("https://jsonplaceholder.typicode.com/todos/1")
-      .subscribe((data: user | any) => {
-        console.log(data)
-      })
+    return this.http.get("https://jsonplaceholder.typicode.com/todos/1")
   }
   postTodos() {
     this.http.post("https://jsonplaceholder.typicode.com/posts", { data: 2 })

@@ -10,7 +10,10 @@ import { HttpService } from './http.service';
 export class AppComponent {
   myetst = 'apna-adda from component';
   constructor(public myhttp: HttpService) {
-    this.myhttp.getTodos();
+    this.myhttp.getTodos()
+      .subscribe((subscribe) => {
+
+      });
     this.myhttp.patchTodos();
     this.myhttp.patchTodos();
   }

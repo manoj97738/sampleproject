@@ -2,8 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { urlconfig } from "./url.confi";
+
 export const environment = {
-  production: false
+  ...urlconfig,
+  production: false,
 };
 
 /*

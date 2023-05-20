@@ -3,6 +3,8 @@
   <input type="text" formControlName="email" [ngClass]="iamValid('email') !='' ? 'red':''"><br />
   <h1 [ngClass]="iamValid('email') !='' ? 'red':''">{{iamValid("email")}}</h1>
   <input type="text" formControlName="password" [ngClass]="iamValid('password') !='' ? 'red':''"><br />
+  <input type="text" formControlName="cnfpassword" [ngClass]="iamValid('cnfpassword') !='' ? 'red':''"><br />
+
   <h1 [ngClass]="iamValid('password') !='' ? 'red':''">{{iamValid("password")}}</h1><br />
   <ng-container formArrayName="phone">
     <ng-container *ngFor="let phone of phones.controls; let i = index">
@@ -21,7 +23,7 @@
   </ng-container>
   <button type="button" (click)="addLesson()">addLesson</button>
   <button type="button" (click)="addaddress()">address</button>
-
+  {{signinForm.errors | json}}
   <button type="button" (click)="mysubmit()">Submit</button>
 </form>
 

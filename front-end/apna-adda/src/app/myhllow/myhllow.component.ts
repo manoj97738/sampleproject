@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'sit-myhllow',
@@ -18,17 +18,31 @@ export class MyhelloComponent implements OnInit {
 
     this.signinForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.email,this.customContro]],
       phone: new FormArray([]),
-      address: new FormArray([])
-    })
+      address: new FormArray([]),
+      cnfpassword: ["", [Validators.required, Validators.email]],
+    }, { validators: [this.customvalior] })
   }
+  customvalior(form: any): ValidationErrors | null {
+    console.log(form)
+    if (form.value.password!="" && form.value.password === form.value.cnfpassword) {
+      return null;
+    }
+    return { passwordStrength: true }
+  }
+  customContro(control: any): ValidationErrors | null {
 
+    if (control.value =="manoj" ) {
+      return null;
+    }
+    return { manojerror: true }
+  }
   get phones() {
     return this.signinForm.controls["phone"] as FormArray;
   }
   addLesson() {
-    const arr  = this.signinForm.controls["phone"] as FormArray;
+    const arr = this.signinForm.controls["phone"] as FormArray;
     arr.push(new FormControl("", [Validators.required,]));
   }
   deleteLesson(lessonIndex: number) {

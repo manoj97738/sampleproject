@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { cRouterModule } from './app.router';
-
+import { HttpClientModule } from "@angular/common/http";
+import { HttpService } from './http.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,9 +14,10 @@ import { cRouterModule } from './app.router';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    cRouterModule
+    cRouterModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent],
   entryComponents: [],
   exports: []

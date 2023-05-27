@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 let CONFIG = {}
+ 
+CONFIG.app = process.env.APP || 'dev';
 
 CONFIG.port = process.env.PORT || '5130';
 CONFIG.db_dialect = process.env.DB_DIALECT || 'mysql';

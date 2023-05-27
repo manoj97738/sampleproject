@@ -38,4 +38,13 @@ if (CONFIG.app === 'dev') {
     models.sequelize.sync();//creates table if they do not already exist
     //models.sequelize.sync({ force: true });//deletes all tables then recreates them useful for testing and development purposes
 }
+// models.users.findAll({
+//     include: [
+//         { model: models.user_types },
+//     ]
+// })
+//     .then((err, data) => {
+//         // console.log(data.toWeb())
+//         console.log("err,data", err, data)
+//     });
 initApp(app);

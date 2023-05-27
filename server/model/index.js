@@ -13,6 +13,7 @@ const sequelize = new Sequelize(CONFIG.db_name, CONFIG.db_user, CONFIG.db_passwo
 });
 
 db["users"] = require("./user.model")(sequelize);
+db["user_types"] = require("./user.type.model")(sequelize);
 
 
 Object.keys(db).forEach((modelName) => {

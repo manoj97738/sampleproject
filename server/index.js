@@ -4,6 +4,8 @@ const app = express()
 var bodyParser = require('body-parser');
 const initApp = require("./www/app")
 const middelware = require("./middleware/vailidation.middleware")
+const CONFIG = require("./config/config")
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -23,25 +25,17 @@ app.use("/v1", routePublic);
 app.all('**', (req, res) => {
     res.send('No route found')
 })
-initApp(app);
 
-const modelaggreement = require("./model/agreement.model")
-const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('apnaadda', 'root', '', {
-    host: '127.0.0.1',
-    dialect: 'mysql'
-});
-(async () => {
-    try {
-        await sequelize.authenticate();
-        const aggrement = modelaggreement(sequelize);
-        await sequelize.sync();
-        const jane = await aggrement.create({ firstName: "Jane", lastName: "Doe" });
-        console.log("jane", jane.toJSON())
-        const janexy = await aggrement.findAll({});
-        console.log("janexy", janexy)
-        console.log('Connection has been established successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
-})()
+const models = require("./model");
+models.sequelize.authenticate()
+    .then(() => {
+        console.log('Connected to SQL database:', CONFIG.db_name);
+    })
+    .catch(err => {
+        console.error('Unable to connect to SQL database:', CONFIG.db_name, err);
+    });
+if (CONFIG.app === 'dev') {
+    models.sequelize.sync();//creates table if they do not already exist
+    //models.sequelize.sync({ force: true });//deletes all tables then recreates them useful for testing and development purposes
+}
+initApp(app);

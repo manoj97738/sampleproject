@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-function Model(sequelize) {
+function UserModel(sequelize) {
     const User = sequelize.define('Agreement', {
         agreementId: {
             type: DataTypes.INTEGER,
@@ -18,4 +18,4 @@ function Model(sequelize) {
     return User
 }
 
-module.exports = Model
+module.exports = UserModel

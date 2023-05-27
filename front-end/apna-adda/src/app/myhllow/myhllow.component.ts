@@ -25,7 +25,6 @@ export class MyhelloComponent implements OnInit {
     }, { validators: [this.customvalior] })
   }
   customvalior(form: any): ValidationErrors | null {
-    console.log(form)
     if (form.value.password!="" && form.value.password === form.value.cnfpassword) {
       return null;
     }

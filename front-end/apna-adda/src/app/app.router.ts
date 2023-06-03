@@ -8,11 +8,13 @@ import { CommonModule } from "@angular/common";
 import { AuthGuard } from "./auth.guard";
 import { AdminGuard } from "./admin.guard";
 import { DeactiveGuard } from "./deactive.guard";
+import { JwtInterceptor } from "./http.intercerptor";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 const myRoutes: Routes = [
   { path: "", component: FirstComponent, },
-  { path: "hello", component: HelloComponent, canDeactivate: [DeactiveGuard] },
-  { path: "myhello", component: MyhelloComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: "hello", component: HelloComponent, canActivate: [AuthGuard] },
+  { path: "myhello", component: MyhelloComponent, canActivate: [AuthGuard] },
   {
     path: "lazy",
     loadChildren: () => import('./lazyload/lazyload.module').then((m) => m.LazyModule),
@@ -24,7 +26,14 @@ const myRoutes: Routes = [
   declarations: [
     FirstComponent,
     HelloComponent,
-    MyhelloComponent
+    MyhelloComponent,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
   ],
   imports: [
     ReactiveFormsModule,

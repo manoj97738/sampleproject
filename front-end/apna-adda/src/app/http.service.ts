@@ -21,4 +21,8 @@ export class HttpService {
         console.log(data)
       })
   }
+
+  login() {
+    return this.http.post("http://localhost:5130/v1/admin/login", { "email": "manojgrey112@gmail.com", "password": "Manoj@7666901" })
+  }
 }

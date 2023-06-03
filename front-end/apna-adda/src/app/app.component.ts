@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { HttpService } from './http.service';
 
 @Component({
@@ -16,5 +15,12 @@ export class AppComponent {
       });
     this.myhttp.patchTodos();
     this.myhttp.patchTodos();
+  }
+  login() {
+    this.myhttp.login().subscribe((resp: any) => {
+      console.log("login", resp);
+      sessionStorage.setItem("token", resp.token);
+      sessionStorage.setItem("user", JSON.stringify(resp.data));
+    })
   }
 }

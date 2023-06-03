@@ -10,6 +10,7 @@ import { AdminGuard } from "./admin.guard";
 import { DeactiveGuard } from "./deactive.guard";
 import { JwtInterceptor } from "./http.intercerptor";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ErrorInterceptor } from "./error.intercerptor";
 
 const myRoutes: Routes = [
   { path: "", component: FirstComponent, },
@@ -34,6 +35,12 @@ const myRoutes: Routes = [
       useClass: JwtInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+
   ],
   imports: [
     ReactiveFormsModule,

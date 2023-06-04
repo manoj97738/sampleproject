@@ -4,7 +4,7 @@ import { FirstComponent } from "./first-comp/first.component";
 import { HelloComponent } from "./hello/hello.component";
 import { MyhelloComponent } from "./myhllow/myhllow.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DecimalPipe } from "@angular/common";
 import { AuthGuard } from "./auth.guard";
 import { AdminGuard } from "./admin.guard";
 import { DeactiveGuard } from "./deactive.guard";
@@ -32,6 +32,7 @@ const myRoutes: Routes = [
     HighlightDirective,
   ],
   providers: [
+    DecimalPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

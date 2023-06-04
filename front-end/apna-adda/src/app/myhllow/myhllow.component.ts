@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
-
+import { DecimalPipe } from "@angular/common"
 @Component({
   selector: 'sit-myhllow',
   templateUrl: './myhllow.component.html',
@@ -10,29 +10,29 @@ export class MyhelloComponent implements OnInit {
   public signinForm: FormGroup;
   public something: FormControl = new FormControl("");
   ngmd: any;
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, public nbp: DecimalPipe) {
     // this.signinForm = new FormGroup({
     //   email: new FormControl("", [Validators.required, Validators.email]),
     //   password: new FormControl("", [Validators.required, Validators.maxLength(10), Validators.minLength(9),]),
     // })
-
+  console.log(this.nbp.transform("10.01",'4.5-6'))
     this.signinForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.email,this.customContro]],
+      password: ["", [Validators.required, Validators.email, this.customContro]],
       phone: new FormArray([]),
       address: new FormArray([]),
       cnfpassword: ["", [Validators.required, Validators.email]],
     }, { validators: [this.customvalior] })
   }
   customvalior(form: any): ValidationErrors | null {
-    if (form.value.password!="" && form.value.password === form.value.cnfpassword) {
+    if (form.value.password != "" && form.value.password === form.value.cnfpassword) {
       return null;
     }
     return { passwordStrength: true }
   }
   customContro(control: any): ValidationErrors | null {
 
-    if (control.value =="manoj" ) {
+    if (control.value == "manoj") {
       return null;
     }
     return { manojerror: true }

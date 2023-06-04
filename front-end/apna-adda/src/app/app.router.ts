@@ -11,6 +11,7 @@ import { DeactiveGuard } from "./deactive.guard";
 import { JwtInterceptor } from "./http.intercerptor";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ErrorInterceptor } from "./error.intercerptor";
+import { HighlightDirective } from "./highlight.directive";
 
 const myRoutes: Routes = [
   { path: "", component: FirstComponent, },
@@ -28,6 +29,7 @@ const myRoutes: Routes = [
     FirstComponent,
     HelloComponent,
     MyhelloComponent,
+    HighlightDirective,
   ],
   providers: [
     {

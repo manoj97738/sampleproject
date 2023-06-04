@@ -30,7 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           error: (error) => (ok = 'failed')
         }),
         finalize(() => {
-          alert(ok);
+          console.log(ok);
         })
       );
   }

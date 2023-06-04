@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const auth = require("../controller/auth.controller")
+router.post('/signup', auth.signup)
+router.post('/login', auth.login)
 
-router.get('/user', (req, res) => {
-    console.log("req", req.query);
-    res.send('Hello World!')
-})
+
+
+
 router.get('/user/:id', (req, res) => {
     console.log(req.params)
     res.send('get one request + ' + req.params.id)

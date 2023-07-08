@@ -1,36 +1,26 @@
-<h1 style="font-size: 2rem;">
-  {{ title}} radmore -- Interpolation
-</h1>
+<h1 style="font-size: 2rem">{{ title }} radmore -- Interpolation</h1>
 and name is
-<p *ngIf="age>17;else mytemplate">
-  if ielse{{name}}
-</p>
+<p *ngIf="age > 17; else mytemplate">if ielse{{ name }}</p>
 
-<ng-template #mytemplate>
-  else template
-</ng-template>
-
-
+<ng-template #mytemplate> else template </ng-template>
 
 <ng-template [ngIf]="isMango">
-  <div class="name"> {{name}}</div>
+  <div class="name">{{ name }}</div>
 </ng-template>
 <table border="1">
   <tr>
-    <td> No. </td>
-    <td> Name</td>
-    <td> Age</td>
+    <td>No.</td>
+    <td>Name</td>
+    <td>Age</td>
   </tr>
-  <tr *ngFor="let mydata of heroes; let i=index;">
-    <td> {{i+1}} </td>
-    <td> {{mydata.name}}</td>
-    <td> {{mydata.age}}</td>
+  <tr *ngFor="let mydata of heroes; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ mydata.name }}</td>
+    <td>{{ mydata.age }}</td>
   </tr>
 </table>
 <ng-template ngFor let-mydata [ngForOf]="heroes" let-i="index">
-  <div>
-    ({{i}}) {{mydata.name}}
-  </div>
+  <div>({{ i }}) {{ mydata.name }}</div>
 </ng-template>
 
 <div [ngSwitch]="age">
@@ -39,21 +29,37 @@ and name is
 </div>
 <button (click)="add()">My click</button>
 DRY ( dont repeat ypurself)
-<div [ngClass]="age > 17 ? 'special' : 'nospecial' ">My new attribye direcive</div>
+<div [ngClass]="age > 17 ? 'special' : 'nospecial'">
+  My new attribye direcive
+</div>
 <div [ngClass]="currentClasses">My new attribye direcive</div>
 
 <div [ngStyle]="currentStyles">
   This div is initially italic, normal weight, and extra large (24px).
 </div>
 
-<h3 ngNonBindable>{{myname}} -- normal</h3>
-<h3 >{{myname | lowercase}} -- lowercase</h3>
-<h3>{{myname | uppercase}} -- uppercase</h3>
-<h3>{{myname | titlecase}} -- titlecase</h3>
-<h3>{{myname | slice:1:5}} -- slice</h3>
-<h3>{{3.6 | number: '5.3-6'}}  -- number</h3>
-<h3>{{3.67896789 | number: '5.3-6'}}  -- number</h3>
-<h3>{{3.67896789 | number: '5.3-6'}}  -- number</h3>
-<h3>{{3.67896789 | percent: '5.3-6'}}  -- percent</h3>
-<p>  {{3.67896789  | currency:'CAD':'symbol-narrow':'4.2-2'}}</p>
-<p>{{mydate | date:'dd-yyyy-MMM hh mm:ss a'  }}</p>
+<h3 ngNonBindable>{{ myname }} -- normal</h3>
+<h3>{{ myname | lowercase }} -- lowercase</h3>
+<h3>{{ myname | uppercase }} -- uppercase</h3>
+<h3>{{ myname | titlecase }} -- titlecase</h3>
+<h3>{{ myname | slice : 1 : 5 }} -- slice</h3>
+<h3>{{ 3.6 | number : "5.3-6" }} -- number</h3>
+<h3>{{ 3.67896789 | number : "5.3-6" }} -- number</h3>
+<h3>{{ 3.67896789 | number : "5.3-6" }} -- number</h3>
+<h3>{{ 3.67896789 | percent : "5.3-6" }} -- percent</h3>
+<p>{{ 3.67896789 | currency : "CAD" : "symbol-narrow" : "4.2-2" }}</p>
+<p>{{ mydate | date : "dd-yyyy-MMM hh mm:ss a" }}</p>
+
+My custom pipe
+
+{{ 10 | exponentialStrength : "2" : "2" }}
+
+<h1>My structural directive
+</h1>
+
+<p *myUnless="false" class="unless a">
+  (A) This paragraph is displayed because the condition is false.
+</p>
+<p *myUnless="true" class="unless a">
+  (A) This paragraph is displayed because the condition is true.
+</p>

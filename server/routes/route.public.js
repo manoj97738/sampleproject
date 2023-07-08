@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const auth = require("../controller/auth.controller")
+router.post('/signup', auth.signup)
+router.post('/login', auth.login)
+
 const middelware = require("../middleware/vailidation.middleware")
 router.get('/user', middelware.middleware1, middelware.middleware2, (req, res) => {
     console.log("req", req.query);

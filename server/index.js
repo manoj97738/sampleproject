@@ -15,8 +15,8 @@ models.sequelize.authenticate()
         console.error('Unable to connect to SQL database:', CONFIG.db_name, err);
     });
 if (CONFIG.app === 'dev') {
-    // models.sequelize.sync();//creates table if they do not already exist
-    models.sequelize.sync({ force: true });//deletes all tables then recreates them useful for testing and development purposes
+    models.sequelize.sync();//creates table if they do not already exist
+    // models.sequelize.sync({ force: true });//deletes all tables then recreates them useful for testing and development purposes
 }
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -35,6 +35,8 @@ const routeProtected = require("./routes/route.protected");
 app.get('/filedownlaod', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'angularsyllabus.pdf'))
 })
+require('./middleware/passport')(passport) // as strategy in ./passport.js needs passport object
+
 app.use("/v1", routePublic);
 app.use(passport.authenticate('jwt', { session: false }));
 app.use("/v1", routeProtected);

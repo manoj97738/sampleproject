@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
-
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 function UserModel(sequelize) {
     const User = sequelize.define('users', {
         user_id: {
@@ -24,26 +25,28 @@ function UserModel(sequelize) {
             }
         },
         password: DataTypes.STRING,
-        user_type_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user_types',
-                key: 'user_type_id',
-            }
-        }
+        // user_type_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'user_types',
+        //         key: 'user_type_id',
+        //     }
+        // }
     }, {});
     User.associate = function (models) {
-        this.User = this.belongsTo(models.user_types, { foreignKey: 'user_type_id' });
+        // this.User = this.belongsTo(models.user_types, { foreignKey: 'user_type_id' });
     };
     User.beforeSave(async (user, options) => {
-        let err;
+
         if (user.changed('password')) {
-            let salt, hash;
+
             bcrypt.genSalt(10)
-                .then((err, salt) => {
+                .then((salt) => {
+                    console.log("err, salt", salt)
                     return bcrypt.hash(user.password, salt)
                 })
-                .then((err, hash) => {
+                .then((hash) => {
+                    console.log("hashed", hash)
                     user.password = hash;
                 });
         }
@@ -62,10 +65,10 @@ function UserModel(sequelize) {
     }
 
     User.prototype.getJWT = function () {
-        let expiration_time = parseInt(CONFIG.jwt_expiration);
+         
         return "Bearer " + jwt.sign({
             userId: this.userId
-        }, CONFIG.jwt_encryption, {
+        }, "defaulyjwtencry", {
             expiresIn: '365d'
         });
     };

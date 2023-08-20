@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener,HostBinding, Input } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]'
@@ -16,6 +16,10 @@ export class HighlightDirective {
   @HostListener('mouseleave') onMouseLeave() {
     this.highlight(this.someother);
   }
+  @HostBinding('style.border') border!: string;
+  ngOnInit() {
+    this.border="5px solid blue"
+  }
   private highlight(color: string) {
     console.log(" this.el.nativeElement", this.el.nativeElement);
     console.log(this.appHighlight, this.someother)
@@ -23,3 +27,5 @@ export class HighlightDirective {
     this.el.nativeElement.style.backgroundColor = color;
   }
 }
+
+
